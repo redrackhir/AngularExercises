@@ -1,0 +1,22 @@
+<h1>{{title}}</h1>
+<div>
+
+  <table border='1' width='100%' style='border-collapse: collapse;'>
+    <tr>
+      <th>uid</th>
+      <th>user name</th>
+      <th>user ppin</th>
+      <th>Operations</th>
+
+    </tr>
+
+    <tr *ngFor="let user of users">
+      <td>{{ user.uid }}</td>
+      <td>{{ user.name }}</td>
+      <td>{{ user.ppin }}</td>
+      <td>
+        <button (click)="deleteuser(user.uid)">Delete</button>
+        <button (click)="selectuser(user)">Update</button>
+      </td>
+    </tr>
+  </table>
