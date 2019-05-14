@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../api.service';
-import { User } from '../user';
+import { User } from 'src/_models/user.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,15 +8,10 @@ import { User } from '../user';
 })
 export class DashboardComponent implements OnInit {
   users: User[];
-  selectedUser: User = { uid: null, name: null, ppin: null };
+  selectedUser: User = { uid: null, name: null, ppin: null, accessLevel: null };
   title = 'Listado usuarios';
 
-  constructor(private apiService: ApiService) {}
+  constructor() {}
 
-  ngOnInit() {
-    this.apiService.readUsers().subscribe((users: User[]) => {
-      this.users = users;
-      console.log(this.users);
-    });
-  }
+  ngOnInit() {}
 }

@@ -1,22 +1,16 @@
-<h1>{{title}}</h1>
+<h1>{{ title }}</h1>
 <div>
+  <ul class="list-group list-group-horizontal" *ngFor="let user of users">
+    <!--  <li > -->
+    <li class="list-group-item bg-secondary py-1">{{ user.uid }}</li>
+    <li class="list-group-item py-1">{{ user.name }}</li>
+    <li class="list-group-item py-1">{{ user.ppin }}</li>
+    <li class="list-group-item py-1">{{ user.accessLevel }}</li>
+    <li class="list-group-item py-1">
+      <button (click)="deleteuser(user.uid)">Delete</button>
+      <button (click)="selectuser(user)">Update</button>
+    </li>
 
-  <table border='1' width='100%' style='border-collapse: collapse;'>
-    <tr>
-      <th>uid</th>
-      <th>user name</th>
-      <th>user ppin</th>
-      <th>Operations</th>
-
-    </tr>
-
-    <tr *ngFor="let user of users">
-      <td>{{ user.uid }}</td>
-      <td>{{ user.name }}</td>
-      <td>{{ user.ppin }}</td>
-      <td>
-        <button (click)="deleteuser(user.uid)">Delete</button>
-        <button (click)="selectuser(user)">Update</button>
-      </td>
-    </tr>
-  </table>
+    <!--  </li> -->
+  </ul>
+</div>

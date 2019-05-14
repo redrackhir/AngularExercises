@@ -5,13 +5,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { HeroesComponent } from './heroes/heroes.component';
 import { LoginComponent } from './login/login.component';
+import { LoginService } from '../_services/login.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
+import { AlertService } from 'src/_services/alertService';
+import { UserService } from 'src/_services/user.service';
 
 const appRoutes: Routes = [
-  // { path: 'crisis-center', component: CrisisListComponent },
-  // { path: 'hero/:id',      component: HeroDetailComponent },
   {
     path: 'heroes',
     component: HeroesComponent,
@@ -27,7 +28,13 @@ const appRoutes: Routes = [
     component: HomeComponent,
     data: { title: 'Home' }
   },
-  { path: '',
+  {
+    path: 'login',
+    component: LoginComponent,
+    data: { title: 'Login' }
+  },
+  {
+    path: '',
     redirectTo: '/home',
     pathMatch: 'full'
   } /*,
@@ -40,20 +47,18 @@ const appRoutes: Routes = [
     HeroesComponent,
     LoginComponent,
     DashboardComponent,
-    HomeComponent
+    HomeComponent,
+    LoginComponent
   ],
   imports: [
-    RouterModule.forRoot(
-      appRoutes,
-      { enableTracing: true }), // <-- debugging purposes only
+    RouterModule.forRoot(appRoutes, { enableTracing: true }), // <-- debugging purposes only
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
-
-
+  providers: [AlertService, LoginService, UserService],
+  bootstrap: [AppComponent],
 
 })
-export class AppModule { }
+export class AppModule {}
