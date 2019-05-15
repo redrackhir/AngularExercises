@@ -1,4 +1,6 @@
-<p>
-  home works!
-  {{title}}
+<p *ngIf="isUserLogged">
+  Welcome back {{ username }}!
+</p>
+<p *ngIf="!isUserLogged">
+  Login to check
 </p>

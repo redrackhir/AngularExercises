@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../_services/login.service';
 import { Router } from '@angular/router';
-import { User } from 'src/_services';
 import { UserService } from 'src/_services/user.service';
 
 @Component({
@@ -25,8 +24,15 @@ export class LoginComponent implements OnInit {
 
     // Calls service to login user to the api rest
     this.loginService.login(username, password).subscribe(
+      /*
+      contentData = content.map(
+      (data) => data.name
+    )
+      */
       res => {
         console.log(res);
+// tslint:disable-next-line: no-string-literal
+        localStorage.setItem('user', res['user']['name']);
       },
       error => {
         console.error(error);
@@ -37,6 +43,8 @@ export class LoginComponent implements OnInit {
   }
 
   navigate() {
-    this.router.navigateByUrl('/home');
+    this.router.navigate(['/home']);
   }
+
+
 }

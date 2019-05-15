@@ -11,8 +11,14 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { AlertService } from 'src/_services/alertService';
 import { UserService } from 'src/_services/user.service';
+import { LogoutComponent } from './logout/logout.component';
 
 const appRoutes: Routes = [
+  {
+    path: '',
+    redirectTo: '/home',
+    pathMatch: 'full'
+  },
   {
     path: 'heroes',
     component: HeroesComponent,
@@ -34,10 +40,11 @@ const appRoutes: Routes = [
     data: { title: 'Login' }
   },
   {
-    path: '',
-    redirectTo: '/home',
-    pathMatch: 'full'
-  } /*,
+    path: 'logout',
+    component: LogoutComponent,
+    data: { title: 'Logout' }
+  }
+ /*,
   { path: '**', component: PageNotFoundComponent } */
 ];
 
@@ -48,10 +55,11 @@ const appRoutes: Routes = [
     LoginComponent,
     DashboardComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    LogoutComponent
   ],
   imports: [
-    RouterModule.forRoot(appRoutes, { enableTracing: true }), // <-- debugging purposes only
+    RouterModule.forRoot(appRoutes, { enableTracing: false }), // <-- debugging purposes only
     BrowserModule,
     HttpClientModule,
     FormsModule,

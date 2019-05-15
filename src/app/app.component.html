@@ -7,16 +7,22 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+      <li [className]="currentUrl == '/home' ? 'nav-item active' : 'nav-item'">
         <a class="nav-link" routerLink="/home">Home <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
+      <li [className]="currentUrl == '/dashboard' ? 'nav-item active' : 'nav-item'" *ngIf="isUserLogged">
         <a class="nav-link" routerLink="/dashboard">Dashboard</a>
       </li>
-      <li class="nav-item">
-        <a *ngIf="!userLogged"  class="nav-link" routerLink="/login">Login</a>
+      <li [className]="currentUrl == '/login' ? 'nav-item active' : 'nav-item'" *ngIf="!isUserLogged">
+        <a class="nav-link" routerLink="/login">Login</a>
       </li>
-      <li *ngIf="userLogged" class="nav-item dropdown">
+      <li class="nav-item">
+        <a *ngIf="isUserLogged"  class="nav-link" routerLink="/logout">Logout</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/logout">{{ isUserLogged }}</a>
+      </li>
+      <li *ngIf="isUserLogged" class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Dropdown
         </a>
@@ -28,7 +34,7 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
+        <a [ngClass]="{'nav-link': true, 'disabled': !isUserLogged}" href="#">Disabled</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
