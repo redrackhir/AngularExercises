@@ -19,8 +19,8 @@
       <li class="nav-item">
         <a *ngIf="isUserLogged"  class="nav-link" routerLink="/logout">Logout</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/logout">{{ isUserLogged }}</a>
+      <li *ngIf="isUserLogged" class="nav-item">
+        <a class="nav-link" routerLink="/checkme">Check</a>
       </li>
       <li *ngIf="isUserLogged" class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

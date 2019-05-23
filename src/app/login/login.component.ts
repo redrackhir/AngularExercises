@@ -10,13 +10,18 @@ import { UserService } from 'src/_services/user.service';
 })
 export class LoginComponent implements OnInit {
 
+private _userService: UserService;
+
   constructor(
     private loginService: LoginService,
     private router: Router,
     private userService: UserService
-  ) {}
+  ) {
+    this._userService = userService;
+  }
 
   ngOnInit() {
+
   }
 
   logIn(username: string, password: string, event: Event) {
@@ -32,7 +37,11 @@ export class LoginComponent implements OnInit {
       res => {
         console.log(res);
 // tslint:disable-next-line: no-string-literal
-        localStorage.setItem('user', res['user']['name']);
+        if (res['success'] == true) {
+          localStorage.setItem('user', res['user']['name']);
+          this._userService.setUserLoggedIn(res['user']);
+          console.log('login.component->_userService = ' + JSON.stringify(this._userService));
+        }
       },
       error => {
         console.error(error);

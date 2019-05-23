@@ -12,6 +12,7 @@ import { HomeComponent } from './home/home.component';
 import { AlertService } from 'src/_services/alertService';
 import { UserService } from 'src/_services/user.service';
 import { LogoutComponent } from './logout/logout.component';
+import { CheckmeComponent } from './checkme/checkme.component';
 
 const appRoutes: Routes = [
   {
@@ -43,6 +44,11 @@ const appRoutes: Routes = [
     path: 'logout',
     component: LogoutComponent,
     data: { title: 'Logout' }
+  },
+  {
+    path: 'checkme',
+    component: CheckmeComponent,
+    data: { title: 'Check' }
   }
  /*,
   { path: '**', component: PageNotFoundComponent } */
@@ -56,7 +62,8 @@ const appRoutes: Routes = [
     DashboardComponent,
     HomeComponent,
     LoginComponent,
-    LogoutComponent
+    LogoutComponent,
+    CheckmeComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes, { enableTracing: false }), // <-- debugging purposes only

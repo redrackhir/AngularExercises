@@ -3,20 +3,32 @@ import { User } from '../_models/user.model';
 
 @Injectable()
 export class UserService {
-  private isUserLoggedIn;
-  public usserLogged: User;
+  public isUserLoggedIn = false;
+  public userLogged: User = { uid: 0, name: '', accessLevel: '-1', ppin: '' };
 
   constructor() {
-    this.isUserLoggedIn = false;
+    this.getUserLoggedIn();
   }
 
   setUserLoggedIn(user: User) {
     this.isUserLoggedIn = true;
-    this.usserLogged = user;
-    localStorage.setItem('currentUser', JSON.stringify(user));
+    this.userLogged = user;
+    localStorage.setItem('loggedUser', JSON.stringify(user));
   }
 
   getUserLoggedIn() {
-    return JSON.parse(localStorage.getItem('currentUser'));
+    this.userLogged = JSON.parse(localStorage.getItem('loggedUser'));
+    this.isUserLoggedIn = this.userLogged != null;
+    console.log('user.service: isUserLoggedIn = ' + this.isUserLoggedIn);
+    if (this.isUserLoggedIn) {
+      console.log('user.service: userLogged.name = ' + this.userLogged.name);
+    }
+    return this.userLogged;
+  }
+
+  logout() {
+    localStorage.removeItem('loggedUser');
+    localStorage.removeItem('currentUser');
+    this.getUserLoggedIn();
   }
 }
