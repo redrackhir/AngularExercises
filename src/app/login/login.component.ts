@@ -9,8 +9,7 @@ import { UserService } from 'src/_services/user.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-private _userService: UserService;
+  private _userService: UserService;
 
   constructor(
     private loginService: LoginService,
@@ -20,31 +19,35 @@ private _userService: UserService;
     this._userService = userService;
   }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
 
   logIn(username: string, password: string, event: Event) {
     event.preventDefault(); // Avoid default action for the submit button of the login form
 
     // Calls service to login user to the api rest
     this.loginService.login(username, password).subscribe(
-      /*
-      contentData = content.map(
-      (data) => data.name
-    )
-      */
       res => {
         console.log(res);
-// tslint:disable-next-line: no-string-literal
+        // tslint:disable-next-line: no-string-literal
         if (res['success'] == true) {
           localStorage.setItem('user', res['user']['name']);
           this._userService.setUserLoggedIn(res['user']);
-          console.log('login.component->_userService = ' + JSON.stringify(this._userService));
+          console.log(
+            'login.component->_userService = ' +
+              JSON.stringify(this._userService)
+          );
         }
       },
       error => {
-        console.error(error);
+        // console.error(error);
+        if (!error.ok) {
+          if (error.status == 0) {
+            // sin respuesta del servidor
+            this.router.navigate(['/401']);
+          }
+          console.error('Oooops, ' + error.message);
+          console.error(JSON.stringify(error));
+        }
       },
 
       () => this.navigate()
@@ -54,6 +57,4 @@ private _userService: UserService;
   navigate() {
     this.router.navigate(['/home']);
   }
-
-
 }

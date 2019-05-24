@@ -11,8 +11,10 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { AlertService } from 'src/_services/alertService';
 import { UserService } from 'src/_services/user.service';
+import { CheckinService } from 'src/_services/checkin.service'
 import { LogoutComponent } from './logout/logout.component';
 import { CheckmeComponent } from './checkme/checkme.component';
+import { Error401Component } from './error401/error401.component';
 
 const appRoutes: Routes = [
   {
@@ -49,6 +51,11 @@ const appRoutes: Routes = [
     path: 'checkme',
     component: CheckmeComponent,
     data: { title: 'Check' }
+  },
+  {
+    path: '401',
+    component: Error401Component,
+    data: { title: 'Error' }
   }
  /*,
   { path: '**', component: PageNotFoundComponent } */
@@ -63,7 +70,8 @@ const appRoutes: Routes = [
     HomeComponent,
     LoginComponent,
     LogoutComponent,
-    CheckmeComponent
+    CheckmeComponent,
+    Error401Component
   ],
   imports: [
     RouterModule.forRoot(appRoutes, { enableTracing: false }), // <-- debugging purposes only
@@ -72,7 +80,7 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [AlertService, LoginService, UserService],
+  providers: [AlertService, LoginService, UserService, CheckinService],
   bootstrap: [AppComponent],
 
 })
