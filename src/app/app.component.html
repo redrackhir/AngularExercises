@@ -22,17 +22,20 @@
       <li *ngIf="isUserLogged" class="nav-item">
         <a class="nav-link" routerLink="/checkme">Check</a>
       </li>
+
+
       <li *ngIf="isUserLogged" class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" routerLink="/heroes">Heroes</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
+          <div ngbDropdown class="d-inline-block">
+            <button class="btn btn-outline-warning nav-item" id="dropdownMenu1" ngbDropdownToggle>Toggle dropdown</button>
+            <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <button class="dropdown-item">Action - 1</button>
+              <button class="dropdown-item">Another Action</button>
+              <button class="dropdown-item">Something else is here</button>
+            </div>
+          </div>
+        </li>
+
+
       <li class="nav-item">
         <a [ngClass]="{'nav-link': true, 'disabled': !isUserLogged}" href="#">Disabled</a>
       </li>

@@ -1,5 +1,4 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
@@ -15,6 +14,8 @@ import { CheckinService } from 'src/_services/checkin.service';
 import { LogoutComponent } from './logout/logout.component';
 import { CheckmeComponent } from './checkme/checkme.component';
 import { Error401Component } from './error401/error401.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgModule } from '@angular/core';
 
 const appRoutes: Routes = [
   {
@@ -78,7 +79,8 @@ const appRoutes: Routes = [
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [AlertService, LoginService, UserService, CheckinService],
   bootstrap: [AppComponent],
