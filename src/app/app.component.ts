@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
 import { UserService } from 'src/_services/user.service';
+import { Title } from '@angular/platform-browser';
+import { AppModule } from './app.module';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +18,7 @@ export class AppComponent {
   _userService: UserService;
   // isUserLogged = false;
 
-  constructor(router: Router, userService: UserService) {
+  constructor(private titleService: Title, router: Router, userService: UserService) {
     this._userService = userService;
     router.events.forEach(event =>
       setTimeout(() => {
@@ -37,6 +39,7 @@ export class AppComponent {
         // RoutesRecognized
       })
     );
+    this.titleService.setTitle(this.title);
     this.getIsLogged();
     console.log('app.component.ts: ...');
   }

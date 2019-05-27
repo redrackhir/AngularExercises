@@ -55,16 +55,17 @@ export class CheckmeComponent implements OnInit {
     // Calls service to login user to the api rest
     this.checkinService.insertCheckin(this.userLogged.uid, this.tiempo).subscribe(
       res => {
+        // tslint:disable-next-line: no-string-literal
         console.log('res => ' + JSON.stringify(res['status']));
         // tslint:disable-next-line: no-string-literal
-        if (res['status'] == 204) {
+        if (res['status'] === 204) {
           console.log('/Checkin -> User checked successful!!');
         }
       },
       error => {
         // console.error(error);
         if (!error.ok) {
-          if (error.status == 0) {
+          if (error.status === 0) {
             // sin respuesta del servidor
             this.router.navigate(['/401']);
           }
@@ -78,7 +79,7 @@ export class CheckmeComponent implements OnInit {
 
   }
   navigate() {
-    throw new Error("Method not implemented.");
+    throw new Error('Method not implemented.');
   }
 }
 

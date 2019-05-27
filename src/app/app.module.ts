@@ -11,7 +11,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { AlertService } from 'src/_services/alertService';
 import { UserService } from 'src/_services/user.service';
-import { CheckinService } from 'src/_services/checkin.service'
+import { CheckinService } from 'src/_services/checkin.service';
 import { LogoutComponent } from './logout/logout.component';
 import { CheckmeComponent } from './checkme/checkme.component';
 import { Error401Component } from './error401/error401.component';
